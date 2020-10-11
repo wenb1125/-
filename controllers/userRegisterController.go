@@ -27,7 +27,7 @@ func (r *RegisterController) Post() {
 		r.Ctx.WriteString("抱歉,用户注册失败,请重试！")
 		return
 	}
-	fmt.Printf("影响了数据库%d行",id)
+	fmt.Printf("影响了数据库%d行\n",id)
 	//用户注册成功
 	r.TplName = "login.html"
 }

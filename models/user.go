@@ -40,7 +40,11 @@ func (u User) SaveUser() (int64,error) {
 
 //查询用户信息
 func (u User) QueryUser() (*User, error) {
-	row := db_mysql.Db.QueryRow("select phone from user where phone = ? and password = ?",
+	md5Hash := md5.New()
+	md5Hash.Write([]byte(u.Password))
+	passwordBytes := md5Hash.Sum(nil)
+	u.Password = hex.EncodeToString(passwordBytes)
+	row := db_mysql.Db.QueryRow("select phone from user where phone = ? and password = ? ",
 		u.Phone,u.Password)
 	err := row.Scan(&u.Phone)
 	if err != nil {

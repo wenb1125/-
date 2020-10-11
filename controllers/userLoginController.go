@@ -28,5 +28,6 @@ func (l *LoginController) Post() {
 		return
 	}
 	//登录成功
+	l.Data["phone"] = user.Phone
 	l.TplName = "home.html"
 }
