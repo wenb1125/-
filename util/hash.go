@@ -2,6 +2,7 @@ package util
 
 import (
 	"crypto/md5"
+	"crypto/sha256"
 	"encoding/hex"
 	"io"
 	"io/ioutil"
@@ -26,4 +27,11 @@ func MD5HashReader(reader io.Reader) (string, error) {
 	md5Hash.Write(bytes)
 	hashBytes := md5Hash.Sum(nil)
 	return hex.EncodeToString(hashBytes), nil
+}
+//对数据进行hash计算
+func SHA256Hash(data []byte) ([]byte) {
+	//对数据进行sha256
+	sha256Hash := sha256.New()
+	sha256Hash.Write(data)
+	return sha256Hash.Sum(nil)
 }

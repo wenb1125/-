@@ -2,6 +2,7 @@ package models
 
 import (
 	"DataCertProject/db_mysql"
+	"DataCertProject/util"
 )
 
 /**
@@ -14,6 +15,7 @@ type UploadRecord struct {
 	FileCert  string //认证号
 	FileTitle string
 	CertTime  int64
+	FormatCertTime string //格式化时间格式，该字段在前端展示
 	Phone     string //对应的用户的phone
 }
 
@@ -55,6 +57,8 @@ func QueryRecordByPhone(phone string) ([]UploadRecord, error) {
 		if err != nil {
 			return nil, err
 		}
+		//时间转换 record.CertTime
+		record.FormatCertTime = util.TimeFormat(record.CertTime,0,util.TIME_FORMAT_THREE)
 		records = append(records, record)
 	}
 	return records, nil
