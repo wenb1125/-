@@ -52,3 +52,5 @@ func (u User) QueryUser() (*User, error) {
 	}
 	return &u, nil
 }
+
+

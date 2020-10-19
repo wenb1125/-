@@ -24,7 +24,7 @@ func (r *RegisterController) Post() {
 
 	//3.返回前端结果(成功跳转页面，失败弹出错误信息)
 	if err != nil {
-		r.Ctx.WriteString("抱歉,用户注册失败,请重试！")
+		r.Ctx.WriteString("注册失败,该用户已经注册！")
 		return
 	}
 	fmt.Printf("影响了数据库%d行\n",id)
